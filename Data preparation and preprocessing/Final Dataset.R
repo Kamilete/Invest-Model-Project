@@ -161,15 +161,15 @@ xFuncT <- function(data) {
   
   data$DVolUp = as.integer(ifelse(data$Strategy == "Buy" | data$Strategy == "Sell", rowSums(coredata(lag(zoo(data$VolUp_5D), k=0:3, na.pad=TRUE))), 0))
   
-  # 2° momentum day with volume up:
+  # 2Â° momentum day with volume up:
   
   data$VolUp_2D <- coredata(lag(zoo(data$VolUp_5D), k=3, na.pad=TRUE))
   
-  # 3° momentum day with volume up:
+  # 3Â° momentum day with volume up:
   
   data$VolUp_3D <- coredata(lag(zoo(data$VolUp_5D), k=2, na.pad=TRUE))
   
-  # 4° momentum day with volume up:
+  # 4Â° momentum day with volume up:
   
   data$VolUp_4D <- coredata(lag(zoo(data$VolUp_5D), k=1, na.pad=TRUE))
   
@@ -488,15 +488,15 @@ xFuncT <- function(data) {
   
   data$D_Rt_Up = as.integer(ifelse(data$Strategy == "Buy" | data$Strategy == "Sell", rowSums(coredata(lag(zoo(data$Rt_Up_5D), k=0:3, na.pad=TRUE))), 0))
   
-  # 2° momentum day with greater return:
+  # 2Â° momentum day with greater return:
   
   data$Rt_Up_2D <- coredata(lag(zoo(data$Rt_Up_5D), k=3, na.pad=TRUE))
   
-  # 3° momentum day with greater return:
+  # 3Â° momentum day with greater return:
   
   data$Rt_Up_3D <- coredata(lag(zoo(data$Rt_Up_5D), k=2, na.pad=TRUE))
   
-  # 4° momentum day with greater return:
+  # 4Â° momentum day with greater return:
   
   data$Rt_Up_4D <- coredata(lag(zoo(data$Rt_Up_5D), k=1, na.pad=TRUE))
   
