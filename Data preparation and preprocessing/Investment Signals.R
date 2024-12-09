@@ -4,7 +4,6 @@ options(scipen=999)
 
 # The stock list
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 load(file="Stock_List.RData")
 
   # Removing New York Registry Shares: "RDPL US" Row: 3015 / "UN US" Row: 3526
@@ -103,12 +102,10 @@ xFuncT <- function(data) {
 
 # Data transformation
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data')
-
 DF <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data/'
+Dir <- 'C:/Full Equity Data/'
 
 for (i in 1:nrow(Stocks)){
   RFile1 <- sprintf('%s_D.RData', Stocks[i,1])
@@ -122,7 +119,6 @@ for (i in 1:nrow(Stocks)){
 
 # Comparing Earnings dates announcements between files
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 load(file="Stock_List.RData")
 
 which(Stocks$Symbol == "2761917Q_US")
@@ -136,9 +132,9 @@ Diff <- data.frame(Difference, "Dim_Earn_Dt" = numeric(length = 3782), "Dim_Earn
 rownames(Diff) <- Stocks2$Symbol
 
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings Dates/'
+Dir2 <- 'C:/Earnings Dates/'
 RFile3 <- ""
-Dir3 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings with EPS/'
+Dir3 <- 'C:/Earnings with EPS/'
 
 for (i in 1:nrow(Stocks2)){
   RFile2 <- paste0(Dir2, sprintf('%s_Q_EDate.RData', Stocks2[i,1]))
@@ -159,15 +155,12 @@ for (i in 1:nrow(Stocks2)){
   print(Stocks2[i,1])
 }
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
-
 save(Diff, file="Earnings_Dates_Diff.RData")
 
 # Merging with Earnings dates announcements
 
 # Delete erroneous Earnings dates (1899-12-31) from "1690Q_US" and "DSCP_US"
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 load(file="Stock_List.RData")
 
 Stocks2 <- Stocks[-402,]
@@ -175,17 +168,15 @@ Stocks2 <- Stocks[-402,]
 library(mgsub)
 Stocks2 <- mgsub(Stocks2[1], pattern=c("/"," "), replacement=c("-","_"))
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 ErnDT <- ""
 ADF <- ""
 dim2 <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings Dates/'
+Dir2 <- 'C:/Earnings Dates/'
 RFile3 <- ""
-Dir3 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings with EPS/'
+Dir3 <- 'C:/Earnings with EPS/'
 
 for (i in 1:nrow(Stocks2)){
   RFile2 <- paste0(Dir2, sprintf('%s_Q_EDate.RData', Stocks2[i,1]))
@@ -231,13 +222,12 @@ for (i in 1:nrow(Stocks2)){
   print(Stocks2[i,1])
 }
 
-load(file = 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings with EPS/2761917Q_US_Q_Earn.RData')
 ADF <- DF[,c(1, 2)]
 names(ADF)[1] <- "Next_Earnings"
 names(ADF)[2] <- "Next_Earnings_Time"
 ADF$Next_Earnings <- adjust("UnitedStates/NYSE", ADF$Next_Earnings)
 ADF$date <- ADF$Next_Earnings
-RFile <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data/2761917Q_US.RData'
+RFile <- 'C:/Full Equity Data/2761917Q_US.RData'
 load(file = RFile)
 DF <- merge(DF, ADF, all.x = TRUE)
 DF <- DF[order(DF$date, decreasing = TRUE),]
@@ -248,14 +238,12 @@ save(DF, file = RFile)
 # Merging with Dividends Data
 # Fill the missing Ex Date for "BVSN_US"
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 DV1 <- ""
 DV2 <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Dividends/'
+Dir2 <- 'C:/Dividends/'
 
 for (i in 1162:nrow(Stocks)){
   RFile2 <- paste0(Dir2, sprintf('%s_Q_Div.RData', Stocks[i,1]))
@@ -308,13 +296,11 @@ for (i in 1162:nrow(Stocks)){
 
 # Merging with Mergers & acquisitions Data Sets:
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 MA <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Mergers & Acquisitions/'
+Dir2 <- 'C:/Mergers & Acquisitions/'
 
 for (i in 1:nrow(Stocks)){
   RFile2 <- paste0(Dir2, sprintf('%s_M&A.RData', Stocks[i,1]))
@@ -352,8 +338,6 @@ for (i in 1:nrow(Stocks)){
 }
 
 # Subseting the data with investment signal (TIS):
-
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
 
 TIS <- data.frame()
 RFile <- ""
@@ -394,8 +378,6 @@ head(TIS)
   
   # Extraction of the small-medium biotechnology companies:
   
-  setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Evaluation of investment strategies')
-  
   Biotech <- as.vector(read.csv("Biotech.csv", stringsAsFactors = FALSE)$Stock)
   Biotech <- paste0(Biotech," US")
   TIS <- subset(TIS, !(Symbol %in% Biotech))
@@ -412,8 +394,6 @@ head(TIS)
   TIS$GICS_INDUSTRY_GROUP_NAME <- as.factor(TIS$GICS_INDUSTRY_GROUP_NAME)
   
   # Market Cap Classification:
-  
-  setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Russell Market Cap')
   
   Cap <- data.frame()
   YY <- c(1995:2019)
@@ -542,14 +522,11 @@ head(TIS)
 
 # Saving TIS
   
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 save(TIS, file="Total-Investment-Signals.RData")
   
 # New stock list:
 
 NStocks <- unique(TIS$Symbol)
-
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 
 save(NStocks, file="Final_Stock_List.RData")
 
