@@ -8,8 +8,6 @@ blpConnect()
 
 # Downloading S&P Composite 1500 members lists since 1990
 
-  setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/S&P 1500')
-
   DateL <- format(c(seq(as.Date("1995-04-1"), as.Date("2020-01-1"), by="quarter")-1), "%Y%m%d")
   
   overrd <- ""
@@ -66,14 +64,10 @@ blpConnect()
 
   # Saving the stock list
 
-  setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
-  
   save(Stocks, file="Stock_List.RData")
 
 # Market cap classification (FTSE Russell Indices) since 1990
   
-  setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Russell Market Cap')
-
   DateL <- format(c(seq(as.Date("1995-07-31"), as.Date("2019-07-31"), by="year")), "%Y%m%d")
   
   # Large-Cap lists - Russell 1000
@@ -156,8 +150,6 @@ blpConnect()
   
 # Value stocks / growth stocks (FTSE Russell Indices) since 1990
   
-  setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Russell Value - Growth')
-
   DateL <- format(c(seq(as.Date("1995-07-31"), as.Date("2019-07-31"), by="year")), "%Y%m%d")
   
   # Value stocks - Russell 1000 Value & Russell 2000 Value
@@ -197,11 +189,7 @@ blpConnect()
     print(i)
     print(DateL[i])
   }
-  
-  # For anti_join:
-  
-  library(dplyr)
-  
+   
   # Value stocks list
   
   YY <- c(1995:2019)
@@ -224,8 +212,6 @@ blpConnect()
 
 # Daily market data
   
-  setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data')
-
   # S&P 500
   
   SP500 <- bdh("SPX Index", c("PX_LAST", "PX_LOW", "PX_HIGH", "PX_VOLUME"), start.date = as.Date("1986-01-31"), end.date = as.Date("2019-12-31"), int.as.double = TRUE)
