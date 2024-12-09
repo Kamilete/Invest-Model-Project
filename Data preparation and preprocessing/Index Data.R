@@ -4,15 +4,15 @@ options(scipen=999)
 
 # Open the S&P 500 series from Yahoo
 
-load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Evaluation of investment strategies/Old Model/5 Days model/Index-Data.RData")
+load("C:/Index-Data.RData")
 SP500_2 <- SP500
 
 # Open the market data files
 
-load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data/Daily-market-Data.RData")
-load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data/Weekly-market-Data.RData")
-load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data/Monthly-market-Data.RData")
-load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data/Quarterly-market-Data.RData")
+load("C:/Daily-market-Data.RData")
+load("C:/Weekly-market-Data.RData")
+load("C:/Monthly-market-Data.RData")
+load("C:/Quarterly-market-Data.RData")
 
 # Reordering the data frames
 
@@ -282,7 +282,7 @@ library(RQuantLib)
   
   # Full data frame since 1987-07-16:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/Daily Equity Data/IBM_US_D.RData")
   
   Sent <- merge(DF[c(1:8182),c(1,2)], Sent, by = "date", all.x = TRUE)
   Sent <- Sent[order(Sent$date, decreasing = TRUE),]
@@ -313,7 +313,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   USRecession <- merge(DF[,c(1,2)], USRecession, by = "date", all.x = TRUE)
   USRecession <- USRecession[order(USRecession$date, decreasing = TRUE),]
@@ -337,7 +337,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   NonfarmPayRelease <- merge(DF[,c(1,2)], NonfarmPayRelease, by = "date", all.x = TRUE)
   NonfarmPayRelease <- NonfarmPayRelease[order(NonfarmPayRelease$date, decreasing = TRUE),]
@@ -362,7 +362,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   HouseStartRelease <- merge(DF[,c(1,2)], HouseStartRelease, by = "date", all.x = TRUE)
   HouseStartRelease <- HouseStartRelease[order(HouseStartRelease$date, decreasing = TRUE),]
@@ -391,7 +391,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   CPIRelease <- merge(DF[,c(1,2)], CPIRelease, by = "date", all.x = TRUE)
   CPIRelease <- CPIRelease[order(CPIRelease$date, decreasing = TRUE),]
@@ -416,7 +416,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   FOMCRateRelease <- merge(DF[,c(1,2)], FOMCRateRelease, by = "date", all.x = TRUE)
   FOMCRateRelease <- FOMCRateRelease[order(FOMCRateRelease$date, decreasing = TRUE),]
@@ -444,7 +444,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   PMI <- merge(DF[,c(1,2)], PMI, by = "date", all.x = TRUE)
   PMI <- PMI[order(PMI$date, decreasing = TRUE),]
@@ -469,7 +469,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   RecessionProb <- merge(DF[,c(1,2)], RecessionProb, by = "date", all.x = TRUE)
   RecessionProb <- RecessionProb[order(RecessionProb$date, decreasing = TRUE),]
@@ -493,7 +493,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   BehavIndex <- merge(DF[,c(1,2)], BehavIndex, by = "date", all.x = TRUE)
   BehavIndex <- BehavIndex[order(BehavIndex$date, decreasing = TRUE),]
@@ -506,7 +506,7 @@ library(RQuantLib)
   
 # NYSE Margin Debt
   
-  MarginDebt2 <- read.csv2("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data/FINRA Margin Debt.csv")
+  MarginDebt2 <- read.csv2("C:/Market Data/FINRA Margin Debt.csv")
   MarginDebt2$date <- as.Date(MarginDebt2$date)
   MarginDebt1 <- MarginDebt
   
@@ -560,7 +560,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   MarginDebt <- merge(DF[,c(1,2)], MarginDebt, by = "date", all.x = TRUE)
   MarginDebt <- MarginDebt[order(MarginDebt$date, decreasing = TRUE),]
@@ -599,7 +599,7 @@ library(RQuantLib)
   
   # Full data frame since 1986-01-01:
   
-  load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data/IBM_US_D.RData")
+  load("C:/IBM_US_D.RData")
   
   RealGDP <- merge(DF[,c(1,2)], RealGDP, by = "date", all.x = TRUE)
   RealGDP <- RealGDP[order(RealGDP$date, decreasing = TRUE),]
@@ -612,8 +612,6 @@ library(RQuantLib)
   RealGDP$Recession_GDP <- na.locf(RealGDP$Recession_GDP, na.rm = FALSE, fromLast = TRUE)
   
 # Saving indices
-
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data')
 
 save(SP500, VIX, PutCallRatio, Sent, USRecession, NonfarmPayRelease, HouseStartRelease, 
      CPIRelease, FOMCRateRelease, PMI, RecessionProb, BehavIndex, MarginDebt, RealGDP, file="Market-Data.RData")
