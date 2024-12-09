@@ -14,14 +14,11 @@ devtools::install_github("bmewing/mgsub")
 
 library(mgsub)
 
-# The stock list
+# The stock list to download
 
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 load(file="Stock_List.RData")
 
-# Download the data and save them as RData Files (Daily data)
-
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Daily Equity Data')
+# Download the data and save them as RData Files (Daily Equity data)
 
 Ticker <- ""
 txtFile <- ""
@@ -60,13 +57,9 @@ for (i in 1:nrow(Stocks)){
 out <- c(195, 227, 259, 1902, 2463, 3465)
 Stocks <- Stocks[-c(out),]
 
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
-
 save(Stocks, file="Stock_List.RData")
 
 # Download the data and save them as RData Files (Twice per month data)
-
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Twice per Month Equity Data')
 
 Ticker <- ""
 txtFile <- ""
@@ -86,8 +79,6 @@ for (i in 1:nrow(Stocks)){
 }
 
 # Download the data and save them as RData Files (Quarterly data)
-
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data')
 
 Ticker <- ""
 txtFile <- ""
@@ -114,8 +105,6 @@ for (i in 1:nrow(Stocks)){
 
 # Download the data and save them as RData Files (Quarterly Earnings with EPS Data Sets)
 
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings with EPS')
-
 Ticker <- ""
 txtFile <- ""
 DF <- ""
@@ -133,8 +122,6 @@ for (i in 1:nrow(Stocks)){
 
 # Download the data and save them as RData Files (Quarterly Dividends Data Sets)
 
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Dividends')
-
 Ticker <- ""
 txtFile <- ""
 DF <- ""
@@ -151,9 +138,7 @@ for (i in 1:nrow(Stocks)){
   print(Stocks[i,1])
 }
 
-# Download the data and save them as RData Files (Static data)
-
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
+# Download the data and save them as RData Files (Company data)
 
 StockList <- as.vector(Stocks$Symbol)
 StockList <- paste0(StockList," Equity")
@@ -197,8 +182,6 @@ save(Static, file = 'Static_data.RData')
 
 # Download the data and save them as RData Files (Mergers & acquisitions Data Sets)
 
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Mergers & Acquisitions')
-
 Ticker <- ""
 txtFile <- ""
 DF <- ""
@@ -215,8 +198,6 @@ for (i in 1:nrow(Stocks)){
 }
 
 # Download the data and save them as RData Files (Earnings dates announcements)
-
-setwd('F:/CAMILO/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings Dates')
 
 Ticker <- ""
 txtFile <- ""
