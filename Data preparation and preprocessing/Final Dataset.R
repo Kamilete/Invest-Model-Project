@@ -4,7 +4,6 @@ options(scipen=999)
 
 # The stock lists
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 load(file="Final_Stock_List.RData")
 load(file="Stock_List.RData")
 load(file="Static_data.RData")
@@ -1111,8 +1110,6 @@ xFuncT <- function(data) {
 
 # Data transformation
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 RFile1 <- ""
 
@@ -1182,15 +1179,13 @@ PE_Function <- function(data) {
 
 # Merging with EPS Data
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 ADF <- ""
 ADF2 <- ""
 DFQ <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings with EPS/'
+Dir <- 'C:/Earnings with EPS/'
 
 for (i in 1:length(NStocks)){
   RFile2 <- paste0(Dir, sprintf('%s_Q_Earn.RData', NStocks[i]))
@@ -1338,13 +1333,11 @@ NA_FuncT <- function(data) {
 # Merging with Twice per month data
 cor(na.omit(DF[,c(2,4)]))
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 ADF <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Twice per Month Equity Data/'
+Dir <- 'C:/Twice per Month Equity Data/'
 
 for (i in 1:length(NStocks)){
   RFile2 <- paste0(Dir, sprintf('%s_2XM.RData', NStocks[i]))
@@ -1440,16 +1433,14 @@ QD_FuncT <- function(data) {
 
 # Merging with quarterly data and Earnings dates announcements
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 QQ <- ""
 ADF <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/'
+Dir2 <- 'C:/Quarterly Equity Data/'
 RFile3 <- ""
-Dir3 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings Dates/'
+Dir3 <- 'C:/Quarterly Equity Data/Earnings Dates/'
 
   # New stock list without "2761917Q US"
   NStocks2 <- NStocks[-130]
@@ -1502,12 +1493,11 @@ for (i in 1:length(NStocks2)){
 
   # Merging with quarterly data and Earnings dates announcements for "2761917Q US
 
-  load(file = 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/2761917Q_US_Q.RData')
   ADF <- DF
   ADF$TANG_BOOK_VAL_PER_SH <- NULL
   ADF$Revenue_Surprise <- round((ADF$IS_COMP_SALES / ADF$BEST_SALES) - 1, digits = 3)
   ADF <- Q_FuncT(ADF)
-  RFile1 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data/2761917Q_US.RData'
+  RFile1 <- 'C:/2761917Q_US.RData'
   load(file = RFile1)
   DF <- merge(DF, ADF[,c(-4,-5)], all.x = TRUE)
   DF <- DF[order(DF$date, decreasing = TRUE),]
@@ -1516,9 +1506,7 @@ for (i in 1:length(NStocks2)){
   
 # Correlation with commodities:
   
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-  
-load("C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data/Daily-market-Data.RData")
+load("C:/Daily-market-Data.RData")
 Gold$GoldChng <- (Gold$PX_LAST / coredata(lag(zoo(Gold$PX_LAST), -1, na.pad=TRUE))) - 1
 Oil$OilChng <- (Oil$PX_LAST / coredata(lag(zoo(Oil$PX_LAST), -1, na.pad=TRUE))) - 1
 NatuGas$GasChng <- (NatuGas$PX_LAST / coredata(lag(zoo(NatuGas$PX_LAST), -1, na.pad=TRUE))) - 1
@@ -1560,13 +1548,11 @@ for (i in 1:length(NStocks)){
 
 # Merging with Dividends Data
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 DV <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Dividends/'
+Dir2 <- 'C:/Quarterly Equity Data/Dividends/'
 
 for (i in 1:length(NStocks)){
   RFile2 <- paste0(Dir2, sprintf('%s_Q_Div.RData', NStocks[i]))
@@ -1596,15 +1582,13 @@ for (i in 1:length(NStocks)){
 
 # Merging with Mergers & acquisitions Data Sets:
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 DF <- ""
 MA1 <- ""
 MA2 <- ""
 MAX <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Mergers & Acquisitions/'
+Dir2 <- 'C:/Mergers & Acquisitions/'
 
 for (i in 1:length(NStocks)){
   RFile2 <- paste0(Dir2, sprintf('%s_M&A.RData', NStocks[i]))
@@ -1679,8 +1663,6 @@ for (i in 1:length(NStocks)){
 }
 
 # Subseting the data with investment signal (IS):
-
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
 
 IS <- data.frame()
 RFile <- ""
@@ -1787,8 +1769,6 @@ library(lubridate)
 IS$Year <- year(IS$date)
 
 # Market Cap Classification:
-
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Russell Market Cap')
 
 Cap <- data.frame()
 YY <- c(1995:2019)
@@ -2120,8 +2100,6 @@ IS$QuarterN <- as.integer(IS$Quarter)
 
 # P/E per Industry, sub-industry, year and stock:
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 library(lubridate)
 
 PE <- data.frame()
@@ -2153,7 +2131,6 @@ names(Ind)[3] <- "PE_INDUSTRY"
 SubInd <- aggregate(PE_RATIO ~ Year + GICS_SUB_INDUSTRY_NAME, data = PE, mean)
 names(SubInd)[3] <- "PE_COMPETITORS"
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 save(PE, Ind, SubInd, file="PE_Ind.RData")
 
 YY <- ""
@@ -2246,8 +2223,6 @@ IS$DIV_YLD_Relatv_1y <- IS$DIVIDEND_12_MONTH_YIELD / IS$Avg_12m_DIV_YLD
 
 # Dividend yield per Industry, sub-industry, year and stock:
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
-
 library(lubridate)
 
 DY <- data.frame()
@@ -2277,7 +2252,6 @@ names(Ind)[3] <- "DIV_YLD_INDUSTRY"
 SubInd <- aggregate(DIVIDEND_12_MONTH_YIELD ~ Year + GICS_SUB_INDUSTRY_NAME, data = DY, mean)
 names(SubInd)[3] <- "DIV_YLD_COMPETITORS"
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 save(DY, Ind, SubInd, file="DIV_YLD_Ind.RData")
 
 YY <- ""
@@ -2342,7 +2316,6 @@ IS$Days_Past_Earn2 <- businessDaysBetween("UnitedStates/NYSE", IS$LATEST_ANNOUNC
 IS$Event_Driven_Earn <- as.integer(IS$Days_Past_Earn <= (IS$DT + 1))
 IS$Event_Driven_Earn2 <- as.integer(IS$Days_Past_Earn2 <= (IS$DT + 1))
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 load(file="Earnings_Dates_Diff.RData")
 
 Eq_Diff <- row.names(subset(Diff, Difference < -1))
@@ -2352,8 +2325,6 @@ IS$Event_Driven_Earn[IS$Symbol %in% Eq_Diff & IS$Event_Driven_Earn == 0] <- IS$E
 IS$Event_Driven_Earn[IS$Symbol == "2761917Q US"] <- IS$Event_Driven_Earn2[IS$Symbol == "2761917Q US"]
 
 # Market-to-Book ratio per sub-industry, year and stock:
-
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Full Equity Data')
 
 library(lubridate)
 
@@ -2382,7 +2353,6 @@ MCVB <- merge(MCVB, Static[,c(4, 7)], all.x = TRUE)
 SubInd <- aggregate(MARKET_CAPITALIZATION_TO_BV ~ Year + GICS_SUB_INDUSTRY_NAME, data = MCVB, mean)
 names(SubInd)[3] <- "MARKETCAP_TO_BV_COMP"
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 save(MCVB, SubInd, file="MARKETCAP_TO_BV_Ind.RData")
 
 YY <- ""
@@ -2448,8 +2418,6 @@ IS$Rev_PoP_Chng[as.numeric(IS$date - IS$Rev_PoP_Chng_DT) > 150] <- NA
 
 # Debt-To-Equity Ratio per Industry, sub-industry, year and stock:
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data')
-
 library(lubridate)
 
 DE <- data.frame()
@@ -2458,7 +2426,7 @@ QQ <- ""
 ADF <- ""
 RFile1 <- ""
 RFile2 <- ""
-Dir2 <- 'C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Quarterly Equity Data/Earnings Dates/'
+Dir2 <- 'C:/Earnings Dates/'
 t <- ""
 
 for (i in 1:length(Stocks)){
@@ -2492,7 +2460,6 @@ names(Ind)[3] <- "DEBT_TO_EQY_INDUSTRY"
 SubInd <- aggregate(TOT_DEBT_TO_TOT_EQY ~ Year + GICS_SUB_INDUSTRY_NAME, data = DE, mean)
 names(SubInd)[3] <- "DEBT_TO_EQY_COMP"
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 save(DE, Ind, SubInd, file="DEBT_TO_EQY_Ind.RData")
 
 YY <- ""
@@ -2555,8 +2522,6 @@ IS$Days_Next_Ex_DIV <- businessDaysBetween("UnitedStates/NYSE", IS$date, IS$Ex_D
 IS$CorrectPer_DIV_EX = as.integer(IS$Days_Next_Ex_DIV <= 10 & IS$Days_Next_Ex_DIV > 0)
 
 # Value stocks / growth stocks Classification:
-
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Russell Value - Growth')
 
 VG <- data.frame()
 YY <- c(1995:2019)
@@ -2842,12 +2807,10 @@ IS$PUT_CALL_OPEN_INT_RATIO_SD_Relatv_30D <- NULL
 
 # Saving IS
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 save(IS, file="Stock-Investment-Signals.RData")
 
 # Market data files
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal/Market Data')
 load(file="Daily-market-Data.RData")
 load(file="Market-Data.RData")
 
@@ -3125,7 +3088,6 @@ rownames(PD) <- paste(PD$Symbol, PD$date, sep = " / ")
 
 # Saving
 
-setwd('C:/Users/juang/Documents/Camilo/Alpha Capital Investments/Hedge Fund/Research/Bloomberg Terminal')
 save(PD, file="Panel-Data.RData")
 
 
