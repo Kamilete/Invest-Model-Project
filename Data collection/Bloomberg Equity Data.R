@@ -15,6 +15,7 @@ devtools::install_github("bmewing/mgsub")
 library(mgsub)
 
 # The stock list to download
+# Review file "Bloomberg Market Data.R" to compile this list
 
 load(file="Stock_List.RData")
 
